@@ -19,7 +19,7 @@
     "mocha": "*",
     "should": "*",
     "coffee-script": "*",
-    "connect": "*"
+    "connect": "> 2.0"
 
    },
   "optionalDependencies": {}
