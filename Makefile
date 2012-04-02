@@ -9,6 +9,7 @@ BUILD_OPTS = \
 test: build
 	@./node_modules/.bin/mocha $(SPECS)	\
 		--reporter $(REPORTER) \
+		--compilers coffee:coffee-script \
 		--colors
 
 build:
