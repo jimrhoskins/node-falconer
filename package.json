@@ -1,0 +1,26 @@
+{
+  "author": "Jim Hoskins <jim@jimhoskins.com> (http://jimhoskins.com)",
+  "name": "falconer",
+  "description": "Falconer frontend for node and connect",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jimrhoskins/node-falconer",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jimrhoskins/node-falconer.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": "~0.6.10"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "coffee-script": "*",
+    "connect": "*"
+
+   },
+  "optionalDependencies": {}
+}
