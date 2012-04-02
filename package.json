@@ -8,6 +8,7 @@
     "type": "git",
     "url": "git://github.com/jimrhoskins/node-falconer.git"
   },
+	"main": "lib/falconer",
   "scripts": {
     "test": "make test"
   },

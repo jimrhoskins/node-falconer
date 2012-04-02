@@ -29,6 +29,7 @@ class Request extends EventEmitter
   json: (payload) ->
     @data = [JSON.stringify(payload)]
     @header('Content-Type', 'application/json')
+    @header('Content-Length', @data[0].length)
 
 
   complete: (callback) ->
@@ -38,6 +39,14 @@ class Request extends EventEmitter
     else
       @on 'complete', callback if callback
       @send()
+
+  # Impersonate socket.io socket
+  socket: (socket) ->
+    if socket.handshake?.headers?.cookie
+      @header('cookie', socket.handshake.headers.cookie)
+    @
+
+    
 
   send: ->
     return @ if @sent

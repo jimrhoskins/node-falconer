@@ -58,10 +58,8 @@ describe 'Request', ->
       payload = {foo: [1,2,3], bar: "xyz", x: {1:2}}
 
       target.before_hook = (req, res, next) ->
-        req.headers['content-type'].should.equal 'application/json'
         read req, (body) ->
           body.should.equal JSON.stringify(payload)
-          next()
           done()
 
       req = new Request('localhost', target.port)
@@ -74,10 +72,19 @@ describe 'Request', ->
 
       target.before_hook = (req, res, next) ->
         req.headers['content-type'].should.equal 'application/json'
-        read req, (body) ->
-          body.should.equal JSON.stringify(payload)
-          next()
-          done()
+        done()
+
+      req = new Request('localhost', target.port)
+        .post('/jsontest')
+        .json(payload)
+        .send()
+
+    it 'should set the content-length correctly', (done) ->
+      payload = {foo: [1,2,3], bar: "xyz", x: {1:2}}
+
+      target.before_hook = (req, res, next) ->
+        req.headers['content-length'].should.equal JSON.stringify(payload).length.toString()
+        done()
 
       req = new Request('localhost', target.port)
         .post('/jsontest')
@@ -88,6 +95,7 @@ describe 'Request', ->
 
     it 'should send the request after .send() is called', (done) ->
       target.before_hook = (req, res, next) ->
+        next(req, res)
         done()
 
       new Request('localhost', target.port)
@@ -118,3 +126,17 @@ describe 'Request', ->
             request.complete (respons) ->
               response.body.should.equal 'GET /foo'
               done()
+
+
+  it 'should accept a socket.io socket', (done) ->
+    target.before_hook = (req, res, next) ->
+      req.headers.cookie.should.equal 'cookie=value'
+      next(req, res)
+      done()
+
+    socket = {handshake:{headers:{cookie: 'cookie=value'}}}
+
+    request = new Request('localhost', target.port)
+      .get('/foo')
+      .socket(socket)
+      .send()
