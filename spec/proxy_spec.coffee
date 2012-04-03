@@ -19,6 +19,7 @@ describe 'Falconer proxy',  ->
   falcon = new Falconer
     host: 'localhost'
     port: target.port
+    poll: false
 
   source = connect([])
   source.use falcon
