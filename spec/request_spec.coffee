@@ -7,7 +7,7 @@ read = (stream, callback) ->
   stream.on 'end', -> callback(body)
 
 describe 'Request', ->
-  target= new TargetServer
+  target= new TargetServer(7638)
   beforeEach target.start
   afterEach target.stop
 
