@@ -13,6 +13,16 @@ class Falconer extends EventEmitter
     @host = options.host
     @port = options.port ? 80
     @cascade404 = true
+    @poll = options.poll ? true
+    @pollPath = options.pollPath ? '/@falconer-poll'
+    @pollInterval = options.pollInterval ? 1000
+
+    @pollEvents()
+
+  pollEvents: =>
+    if @poll
+      @get(@pollPath).complete =>
+        setTimeout @pollEvents, @pollInterval
 
   # Connect middleware hook
   handle: (req, res, next) ->
