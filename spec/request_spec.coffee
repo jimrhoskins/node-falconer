@@ -8,8 +8,8 @@ read = (stream, callback) ->
 
 describe 'Request', ->
   target= new TargetServer(7638)
-  beforeEach target.start
-  afterEach target.stop
+  beforeEach (done) -> target.start(done)
+  afterEach (done) -> target.stop(done)
 
   it 'should work with a basic get request', (done) ->
     req = new Request('localhost', target.port)

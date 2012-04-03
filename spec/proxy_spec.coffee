@@ -11,8 +11,10 @@ read = (stream, callback) ->
 
 describe 'Falconer proxy',  ->
   target = new TargetServer
-  beforeEach target.start
-  afterEach target.stop
+  beforeEach (done) -> target.start(done)
+  afterEach (done) -> target.stop(done)
+
+
 
   falcon = new Falconer
     host: 'localhost'
