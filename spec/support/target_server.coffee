@@ -1,7 +1,7 @@
 connect = require 'connect'
 NOOP = (req, res, next) -> next(req, res)
 
-PORT = 7642
+PORT = 3000
 
 class Server
   constructor: (@port) ->
