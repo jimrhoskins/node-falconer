@@ -13,7 +13,7 @@ class Falconer extends EventEmitter
     @host = options.host
     @port = options.port ? 80
     @cascade404 = true
-    @poll = options.poll ? true
+    @poll = options.poll ? false
     @pollPath = options.pollPath ? '/@falconer-poll'
     @pollInterval = options.pollInterval ? 1000
 

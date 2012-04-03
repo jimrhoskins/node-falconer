@@ -1,14 +1,12 @@
 connect = require 'connect'
 NOOP = (req, res, next) -> next(req, res)
 
-PORT = 3000
-
 class Server
   constructor: (@port) ->
     @app = connect()
     @app.use @handler
     @reset()
-    @port ?= PORT += 1
+    @port ?= 7462
 
   reset: ->
     @before_hook = NOOP
@@ -17,12 +15,12 @@ class Server
 
   start: (cb = -> ) =>
     @reset()
-    @server = @app.listen(@port,cb)
+    @server = @app.listen(@port, cb)
     
 
   stop: (cb = -> ) =>
+    @server.on 'close', cb
     @server.close()
-    cb()
 
 
   handler: (req, res, next) =>
