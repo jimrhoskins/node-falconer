@@ -18,6 +18,7 @@ describe 'Falconer request',  ->
   falcon = new Falconer
     host: 'localhost'
     port: target.port
+    poll: false
 
 
   it 'should proxy basic requests', (done) ->
