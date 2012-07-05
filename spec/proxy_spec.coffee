@@ -3,6 +3,7 @@ TargetServer = require './support/target_server'
 
 {Falconer} = require '../lib/falconer'
 connect = require 'connect'
+require './support/http'
 
 read = (stream, callback) ->
   data = ''

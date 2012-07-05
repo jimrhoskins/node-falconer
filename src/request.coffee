@@ -57,7 +57,7 @@ class Request extends EventEmitter
       headers: @headers
       method: @method
       path: @path
-    
+
     @req.on 'response', (@res) =>
       @emit 'response', @res
 
